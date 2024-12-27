@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поздравительный сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        header {
+            padding: 50px;
+            background-color: #ffebcd;
+            color: #333;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        header img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #ff6f61;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e6554d;
+        }
+        .nomination {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .nomination .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .nomination .card:hover {
+            transform: scale(1.05);
+        }
+        .nomination .card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .nomination .card h3 {
+            margin: 0 0 10px;
+        }
+        .nomination .card p {
+            color: #666;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+        .modal-content img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .modal-content h3 {
+            margin-top: 10px;
+        }
+        .modal-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal-content button:hover {
+            background-color: #e6554d;
+        }
+        /* Fullscreen Image Styles */
+        .fullscreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        .fullscreen img {
+            width: 90%;
+            max-width: 800px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать!</h1>
+        <p>Мы рады поздравить всех с этим прекрасным днем! Так давайте начнем номинацию года ПАКО!</p>
+        <img src="фотки/Биба-ф.jpg" alt="Милое фото">
+        <br>
+        <a href="#nomination" class="button">Номинация года</a>
+    </header>
+
+    <section id="nomination" class="nomination">
+        <div class="card" onclick="openModal('Нарышева Назгуль', 'фотки/Назугль.png')">
+            <img src="фотки/назгуль-ф.jpg" alt="Назгуль">
+            <h3>Нарышева Назгуль</h3>
+            <p>С Новым годом! Пусть все мечты сбудутся!</p>
+        </div>
+        <div class="card" onclick="openModal('Нарышева Мадина', 'фотки/Мадина.png')">
+            <img src="фотки/Мадина-ф.jpg" alt="Мадина">
+            <h3>Нарышева Мадина</h3>
+            <p>Желаем счастья, здоровья и успехов!</p>
+        </div>
+        <div class="card" onclick="openModal('Самохвалова Анастасия', 'фотки/Анастасия.png')">
+            <img src="фотки/Анастасия-ф.jpg" alt="Акерке">
+            <h3>Самохвалова Анастасия</h3>
+            <p>С Новым годом! Пусть удача сопутствует тебе!</p>
+        </div>
+        <div class="card" onclick="openModal('Айтжанова Акбота', 'фотки/Акбота.png')">
+            <img src="фотки/Бота-ф.jpg" alt="Акбота">
+            <h3>Айтжанова Акбота</h3>
+            <p>Пусть в твоей жизни будет только радость!</p>
+        </div>
+        <div class="card" onclick="openModal('Орынбасар Аружан', 'фотки/Аружан.png')">
+            <img src="фотки/Аружан-ф.jpg" alt="Аружан">
+            <h3>Орынбасар Аружан</h3>
+            <p>Счастливого Нового года! Пусть каждый день будет ярким!</p>
+        </div>
+        <div class="card" onclick="openModal('Кәмшат Зейнешова', 'фотки/Камшат.png')">
+            <img src="фотки/Камшат-ф.jpg" alt="Камшат">
+            <h3>Кәмшат Зейнешова</h3>
+            <p>Желаем любви, вдохновения и счастья!</p>
+        </div>
+        <div class="card" onclick="openModal('Кембай Малика', 'фотки/Малика.png')">
+            <img src="фотки/Малика-ф.jpg" alt="Малика">
+            <h3>Кембай Малика</h3>
+            <p>Пусть в новом году будет больше чудес!</p>
+        </div>
+        <div class="card" onclick="openModal('Сакибекова Сауле', 'фотки/Сауле.png')">
+            <img src="фотки/Саке-ф.jpg" alt="Сауле">
+            <h3>Сакибекова Сауле</h3>
+            <p>С праздником! Пусть счастье наполнит твой дом!</p>
+        </div>
+        <div class="card" onclick="openModal('Анель Абайқызы', 'фотки/Анель.png')">
+            <img src="фотки/Анель-ф.jpg" alt="Анель">
+            <h3>Анель Абайқызы</h3>
+            <p>Пусть Новый год принесет успех и радость!</p>
+        </div>
+        <div class="card" onclick="openModal('Усманова Жамила', 'фотки/Жамила.png')">
+            <img src="фотки/Жамила-ф.jpg" alt="Жамила">
+            <h3>Усманова Жамила</h3>
+            <p>Пусть каждый день будет наполнен счастьем!</p>
+        </div>
+        <div class="card" onclick="openModal('Назерке Тұрсынбай', 'фотки/Назерке.png')">
+            <img src="фотки/Назерке-ф.jpg" alt="Назерке">
+            <h3>Назерке Тұрсынбай</h3>
+            <p>Желаем тепла, любви и радости в новом году!</p>
+        </div>
+        <div class="card" onclick="openModal('Токан Акерке', 'фотки/Акерке.png')">
+            <img src="фотки/Акерке-ф.jpg" alt="Акерке">
+            <h3>Токан Акерке</h3>
+            <p>С Новым годом! Пусть удача сопутствует тебе!</p>
+        </div>
+        <div class="card" onclick="openModal('Дана Абатова', 'фотки/Дана.png')">
+            <img src="https://via.placeholder.com/100" alt="Акерке">
+            <h3>Дана Абатова</h3>
+            <p>С Новым годом! Пусть удача сопутствует тебе!</p>
+        </div>
+        <div class="card" onclick="openModal('Шодорова Сымбат', 'фотки/Сымбат.png')">
+            <img src="фотки/Сымбат-ф.jpg" alt="Акерке">
+            <h3>Шодорова Сымбат</h3>
+            <p>С Новым годом! Пусть удача сопутствует тебе!</p>
+        </div>
+        
+    </section>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-name"></h3>
+            <img id="modal-image" src="" alt="Поздравление" onclick="openFullscreen(this)">
+            <button onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="fullscreen" class="fullscreen" onclick="closeFullscreen()">
+        <img id="fullscreen-image" src="" alt="Fullscreen">
+    </div>
+
+    <script>
+        function openModal(name, imageSrc) {
+            document.getElementById('modal-name').textContent = name;
+            document.getElementById('modal-image').src = imageSrc;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function openFullscreen(image) {
+            document.getElementById('fullscreen-image').src = image.src;
+            document.getElementById('fullscreen').style.display = 'flex';
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreen').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
